@@ -38,7 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* ─── NOISE TEXTURE ─── */
         body::before {
             content: '';
             position: fixed;
@@ -48,7 +47,6 @@
             z-index: 0;
         }
 
-        /* ─── HERO ─── */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -151,8 +149,7 @@
             background: linear-gradient(to bottom, var(--accent), transparent);
             animation: scrollLine 2s ease-in-out infinite;
         }
-
-        /* ─── SECTION ─── */
+        
         section {
             position: relative;
             z-index: 1;
@@ -173,7 +170,6 @@
             line-height: 1.2;
         }
 
-        /* ─── ABOUT ─── */
         .about {
             padding: 6rem 2rem;
             max-width: 900px;
@@ -225,7 +221,6 @@
             margin-top: 0.3rem;
         }
 
-        /* ─── MEMBERS ─── */
         .members-section {
             padding: 6rem 2rem;
             max-width: 1100px;
@@ -341,7 +336,6 @@
             border-color: rgba(200, 150, 90, 0.4);
         }
 
-        /* ─── DIVIDER ─── */
         .divider {
             max-width: 1100px;
             margin: 0 auto;
@@ -349,7 +343,6 @@
             border-top: 1px solid var(--border);
         }
 
-        /* ─── FOOTER ─── */
         footer {
             padding: 4rem 2rem;
             text-align: center;
@@ -379,7 +372,6 @@
             text-transform: uppercase;
         }
 
-        /* ─── ANIMATIONS ─── */
         @keyframes fadeUp {
             from {
                 opacity: 0;
@@ -437,7 +429,6 @@
             transform: translateY(0);
         }
 
-        /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
             .about {
                 grid-template-columns: 1fr;
@@ -459,7 +450,6 @@
 
 <body>
 
-    <!-- ─── HERO ─── -->
     <section class="hero">
         <div class="hero-glow"></div>
         <div class="hero-glow2"></div>
@@ -476,7 +466,6 @@
         </div>
     </section>
 
-    <!-- ─── ABOUT ─── -->
     <section>
         <div class="about reveal">
             <div class="about-text">
@@ -520,10 +509,9 @@
             <!-- Member 1 -->
             <div class="member-card reveal">
                 <span class="member-number">01</span>
-                <div class="member-avatar">AN</div>
-                <div class="member-name">Andi Nugroho</div>
-                <div class="member-nim">NIM: 123456001</div>
-                <span class="member-role">Ketua Kelompok</span>
+                <div class="member-avatar">M</div>
+                <div class="member-name">Mustaqimah Dwi Susilo</div>
+                <div class="member-nim">NIS: 11056</div>
             </div>
 
             <!-- Member 2 -->
@@ -531,8 +519,7 @@
                 <span class="member-number">02</span>
                 <div class="member-avatar" style="background:linear-gradient(135deg,#7B5EA7,#C8965A)">BR</div>
                 <div class="member-name">Budi Raharjo</div>
-                <div class="member-nim">NIM: 123456002</div>
-                <span class="member-role">Sekretaris</span>
+                <div class="member-nim">NIS: 123456002</div>
             </div>
 
             <!-- Member 3 -->
@@ -540,8 +527,7 @@
                 <span class="member-number">03</span>
                 <div class="member-avatar" style="background:linear-gradient(135deg,#3A7BD5,#7B5EA7)">CP</div>
                 <div class="member-name">Citra Pratiwi</div>
-                <div class="member-nim">NIM: 123456003</div>
-                <span class="member-role">Bendahara</span>
+                <div class="member-nim">NIS: 123456003</div>
             </div>
 
             <!-- Member 4 -->
@@ -549,8 +535,7 @@
                 <span class="member-number">04</span>
                 <div class="member-avatar" style="background:linear-gradient(135deg,#2D9E75,#C8965A)">DS</div>
                 <div class="member-name">Devi Susanti</div>
-                <div class="member-nim">NIM: 123456004</div>
-                <span class="member-role">Anggota</span>
+                <div class="member-nim">NIS: 123456004</div>
             </div>
 
             <!-- Member 5 -->
@@ -558,8 +543,7 @@
                 <span class="member-number">05</span>
                 <div class="member-avatar" style="background:linear-gradient(135deg,#C0392B,#7B5EA7)">EW</div>
                 <div class="member-name">Eko Widodo</div>
-                <div class="member-nim">NIM: 123456005</div>
-                <span class="member-role">Anggota</span>
+                <div class="member-nim">NIS: 123456005</div>
             </div>
 
             <!-- Member 6 -->
@@ -567,14 +551,12 @@
                 <span class="member-number">06</span>
                 <div class="member-avatar" style="background:linear-gradient(135deg,#D4A017,#C8965A)">FA</div>
                 <div class="member-name">Fitri Andriani</div>
-                <div class="member-nim">NIM: 123456006</div>
-                <span class="member-role">Anggota</span>
+                <div class="member-nim">NIS: 123456006</div>
             </div>
 
         </div>
     </section>
 
-    <!-- ─── FOOTER ─── -->
     <div class="divider"></div>
     <footer class="reveal">
         <div class="footer-title">Terima Kasih</div>
