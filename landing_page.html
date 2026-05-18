@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kelompok Kami</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --cream: #F5F0E8;
+            --dark: #0F0E0C;
+            --accent: #C8965A;
+            --accent2: #7B5EA7;
+            --muted: #6B6760;
+            --card-bg: #1A1916;
+            --border: rgba(200, 150, 90, 0.25);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--cream);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ─── NOISE TEXTURE ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 150, 90, 0.12) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero-glow2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(123, 94, 167, 0.10) 0%, transparent 70%);
+            top: 30%;
+            right: 10%;
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-block;
+            border: 1px solid var(--border);
+            color: var(--accent);
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 0.4rem 1.2rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 9vw, 7.5rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            animation: fadeUp 0.8s ease 0.15s both;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            margin-top: 1.8rem;
+            font-size: 1.05rem;
+            color: var(--muted);
+            font-weight: 300;
+            max-width: 480px;
+            line-height: 1.8;
+            animation: fadeUp 0.8s ease 0.3s both;
+        }
+
+        .hero-line {
+            width: 60px;
+            height: 1px;
+            background: var(--accent);
+            margin: 2.5rem auto 0;
+            animation: scaleIn 0.8s ease 0.5s both;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            animation: fadeIn 1.2s ease 1s both;
+        }
+
+        .scroll-dot {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        /* ─── SECTION ─── */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* ─── ABOUT ─── */
+        .about {
+            padding: 6rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            line-height: 1.9;
+            margin-top: 1.5rem;
+            font-weight: 300;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+            margin-top: 0.3rem;
+        }
+
+        /* ─── MEMBERS ─── */
+        .members-section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .members-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .member-card {
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            background: var(--card-bg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(.23, 1, .32, 1), border-color 0.3s, box-shadow 0.4s;
+            cursor: default;
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(.23, 1, .32, 1);
+            transform-origin: left;
+        }
+
+        .member-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .member-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(200, 150, 90, 0.5);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .member-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            position: relative;
+        }
+
+        .member-avatar::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 1px solid rgba(200, 150, 90, 0.4);
+        }
+
+        .member-number {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            font-size: 0.68rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        .member-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .member-nim {
+            font-size: 0.78rem;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            margin-bottom: 0.8rem;
+        }
+
+        .member-role {
+            font-size: 0.82rem;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            display: inline-block;
+            padding: 0.25rem 0.9rem;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .member-card:hover .member-role {
+            background: rgba(200, 150, 90, 0.1);
+            color: var(--accent);
+            border-color: rgba(200, 150, 90, 0.4);
+        }
+
+        /* ─── DIVIDER ─── */
+        .divider {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-sub {
+            color: var(--muted);
+            font-size: 0.88rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .footer-year {
+            margin-top: 3rem;
+            font-size: 0.72rem;
+            color: rgba(107, 103, 96, 0.5);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scaleX(0);
+            }
+
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes scrollLine {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scaleY(0.5);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .about {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .members-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-glow2"></div>
+        <div style="position:relative;z-index:1;">
+            <div class="badge">✦ Kelompok Kami</div>
+            <h1 class="hero-title">Satu Tujuan,<br><em>Enam Jiwa</em></h1>
+            <p class="hero-sub">Kami adalah kelompok yang terbentuk dari semangat belajar bersama, saling mendukung, dan
+                berkolaborasi menuju hasil terbaik.</p>
+            <div class="hero-line"></div>
+        </div>
+        <div class="scroll-hint">
+            <div class="scroll-dot"></div>
+            Scroll
+        </div>
+    </section>
+
+    <!-- ─── ABOUT ─── -->
+    <section>
+        <div class="about reveal">
+            <div class="about-text">
+                <p class="section-label">Tentang Kelompok</p>
+                <h2 class="section-title">Bersama Lebih Jauh</h2>
+                <p>Kami adalah tim yang solid, hadir untuk menyelesaikan setiap tantangan akademik dengan kolaborasi,
+                    kreativitas, dan dedikasi penuh. Setiap anggota membawa kekuatan unik yang saling melengkapi.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-card">
+                    <div class="stat-num">6</div>
+                    <div class="stat-label">Anggota</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">1</div>
+                    <div class="stat-label">Tim Solid</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">∞</div>
+                    <div class="stat-label">Semangat</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">100<span style="font-size:1.2rem">%</span></div>
+                    <div class="stat-label">Komitmen</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ─── MEMBERS ─── -->
+    <section class="members-section reveal">
+        <div class="members-header">
+            <p class="section-label">Anggota Kelompok</p>
+            <h2 class="section-title">Kenali Kami</h2>
+        </div>
+
+        <div class="members-grid">
+
+            <!-- Member 1 -->
+            <div class="member-card reveal">
+                <span class="member-number">01</span>
+                <div class="member-avatar">AN</div>
+                <div class="member-name">Andi Nugroho</div>
+                <div class="member-nim">NIM: 123456001</div>
+                <span class="member-role">Ketua Kelompok</span>
+            </div>
+
+            <!-- Member 2 -->
+            <div class="member-card reveal" style="transition-delay:0.1s">
+                <span class="member-number">02</span>
+                <div class="member-avatar" style="background:linear-gradient(135deg,#7B5EA7,#C8965A)">BR</div>
+                <div class="member-name">Budi Raharjo</div>
+                <div class="member-nim">NIM: 123456002</div>
+                <span class="member-role">Sekretaris</span>
+            </div>
+
+            <!-- Member 3 -->
+            <div class="member-card reveal" style="transition-delay:0.2s">
+                <span class="member-number">03</span>
+                <div class="member-avatar" style="background:linear-gradient(135deg,#3A7BD5,#7B5EA7)">CP</div>
+                <div class="member-name">Citra Pratiwi</div>
+                <div class="member-nim">NIM: 123456003</div>
+                <span class="member-role">Bendahara</span>
+            </div>
+
+            <!-- Member 4 -->
+            <div class="member-card reveal" style="transition-delay:0.3s">
+                <span class="member-number">04</span>
+                <div class="member-avatar" style="background:linear-gradient(135deg,#2D9E75,#C8965A)">DS</div>
+                <div class="member-name">Devi Susanti</div>
+                <div class="member-nim">NIM: 123456004</div>
+                <span class="member-role">Anggota</span>
+            </div>
+
+            <!-- Member 5 -->
+            <div class="member-card reveal" style="transition-delay:0.4s">
+                <span class="member-number">05</span>
+                <div class="member-avatar" style="background:linear-gradient(135deg,#C0392B,#7B5EA7)">EW</div>
+                <div class="member-name">Eko Widodo</div>
+                <div class="member-nim">NIM: 123456005</div>
+                <span class="member-role">Anggota</span>
+            </div>
+
+            <!-- Member 6 -->
+            <div class="member-card reveal" style="transition-delay:0.5s">
+                <span class="member-number">06</span>
+                <div class="member-avatar" style="background:linear-gradient(135deg,#D4A017,#C8965A)">FA</div>
+                <div class="member-name">Fitri Andriani</div>
+                <div class="member-nim">NIM: 123456006</div>
+                <span class="member-role">Anggota</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <div class="divider"></div>
+    <footer class="reveal">
+        <div class="footer-title">Terima Kasih</div>
+        <p class="footer-sub">
+            Kami percaya bahwa keberhasilan sejati lahir dari kerja keras bersama.<br>
+            Satu langkah, enam orang, satu cerita.
+        </p>
+        <div class="footer-year">© 2025 · Kelompok Kami · Semua Hak Dilindungi</div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+
+</html>
